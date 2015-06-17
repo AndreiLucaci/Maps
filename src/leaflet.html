@@ -11,7 +11,7 @@
     <textarea id="txtarea" style="width: 100%; height: 300px;"></textarea>
     <script type="text/javascript">
       var map = L.map('map').setView([46.7667, 23.5833], 12);
-      var mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
+      var mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       L.tileLayer(mbUrl, {id: 'examples.map-i875mjb7'}).addTo(map);
       var marker = L.marker([46.7667, 23.5833]).bindPopup("Cluj-Napoca").addTo(map);
       map.on('click', function(e) {
