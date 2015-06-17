@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://rawgit.com/lucaciandrei/Maps/master/src/jhere.min.js"></script>
+  </head>
+  <body>
+    <div id="map" style="width: 600px; height: 600px;"></div>
+    <textarea id="txtarea" style="width: 100%; height: 300px;"></textarea>
+    <script type="text/javascript">
+      var appendText = function(text){
+        $("#txtarea").append(text + "\r\n");
+        $('#txtarea').scrollTop($('#txtarea')[0].scrollHeight);
+      }
+      $(window).on('load', function(){
+        $('#map').jHERE({
+            enable: ['behavior', 'positioning', 'zoombar', 'scalebar', 'typeselector'],
+            center: [46.7667, 23.5833],
+            zoom: 12
+        });
+        $('#map').on('mapclick', function(e) {
+          var position = "Lat, Lon : " + e.geo.latitude + ", " + e.geo.longitude;
+          $("#map").jHERE("bubble", [e.geo.latitude, e.geo.longitude], {group: position, fill: "#fff", content: position, text: position});
+          $("#map").jHERE("marker", [e.geo.latitude, e.geo.longitude], {group: position, fill: "#fff", text: position, click: function(e){
+            appendText("Marker position: \r\n" + position);
+          }});
+          appendText(position);
+        });
+      });
+    </script>
+  </body>
+</html>
